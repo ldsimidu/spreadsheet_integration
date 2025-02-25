@@ -11,9 +11,10 @@ pf = pd.read_excel(caminho_excel)
 @app.route("/")
 def show_table():
     pf = pd.read_excel(caminho_excel)
-    tabela_html = pf.to_html(classes="table table-striped")
+    full_table = pf.to_html(classes="table table-striped")
+    total_table = pf[["Times","TOTAL"]].to_html(classes="table table-stripped")
     
-    return render_template("index.html", tabela=tabela_html)
+    return render_template("index.html", tabela=total_table)
 
 if __name__ == "__main__":
     app.run(debug=True)
